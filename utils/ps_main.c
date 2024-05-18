@@ -38,19 +38,19 @@ static char	*create_arg_str(int argc, char **argv, size_t size)
 
 static char	**arg_parser(int argc, char **argv) 
 {
-	size_t	tsize;
+	size_t	total_size;
 	char	*arg_str;
 	char	**vec_ptr;
 	int		i;
 
 	i = 1;
-	tsize = 0;
+	total_size = 0;
 	while (i < argc)
 	{
-		tsize += ft_strlen(argv[i]) + 1;
+		total_size += ft_strlen(argv[i]) + 1;
 		i++;
 	}
-	arg_str = create_arg_str(argc, argv, tsize);
+	arg_str = create_arg_str(argc, argv, total_size);
 	vec_ptr = ft_split(arg_str, ' ');
 	free(arg_str);
 	return (vec_ptr);
