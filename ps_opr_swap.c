@@ -12,6 +12,25 @@
 
 #include "push_swap.h"
 
+void	swap(t_clist **stack)
+{
+	t_clist	*first;
+	t_clist	*second;
+
+	if (*stack && (*stack)->next != *stack)
+	{
+		first = *stack;
+		second = first->next;
+		first->next = second->next;
+		second->next->prev = first;
+		second->next = first;
+		second->prev = first->prev;
+		first->prev->next = second;
+		first->prev = second;
+		*stack = second;
+	}
+}
+
 void	sa(t_clist **stack_a)
 {
 	swap(stack_a);

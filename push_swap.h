@@ -16,22 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include <stdio.h>
 # include "./libft/libft.h"
-
-extern int log_count;
-
-#ifdef DEBUG
-#define LOG_MESSAGE(format, ...) \
-    do { \
-		printf("%03d: in %s: ", ++log_count, __func__); \
-        printf(format, ##__VA_ARGS__); \
-		fflush(stdout); \
-    } while (0)
-#else
-#define LOG_MESSAGE(format, ...)
-#endif
-
 
 typedef struct s_clist
 {
@@ -46,11 +31,14 @@ void		error(void);
 
 // Utils
 long int	*convert_argv(int size, char **argv);
-void		swap(t_clist **stack);
 int			*map_index(long int *arr, int size);
-void		print_argv(char *message, char **argv);
-void		print_arr(char *message, long int *arr, int size);
-void		print_stack(char *message, t_clist *stack);
+int			get_argv_size(char **arg_vec);
+int			get_stck_max(t_clist *stack);
+int			get_stck_min(t_clist *stack);
+
+// Parser
+char		*create_arg_str(int argc, char **argv, size_t size);
+char		**arg_parser(int argc, char **argv);
 
 // Checker
 void		check_char(char **argv);
@@ -70,6 +58,7 @@ int			count_nodes(t_clist *stack);
 void		pa(t_clist **stack_a, t_clist **stack_b);
 void		pb(t_clist **stack_a, t_clist **stack_b);
 
+void		swap(t_clist **stack);
 void		sa(t_clist **stack_a);
 void		sb(t_clist **stack_b);
 void		ss(t_clist **stack_a, t_clist **stack_b);

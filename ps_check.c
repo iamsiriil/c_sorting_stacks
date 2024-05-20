@@ -12,6 +12,7 @@
 
 #define DEBUG
 #include "push_swap.h"
+#include "./test_push_swap.h"
 
 void	check_char(char **argv)
 {
@@ -23,7 +24,6 @@ void	check_char(char **argv)
 	if (!argv)
 		error();
 	
-	//print_argv("argv ", argv);
 	i = 1;
 	while (argv[i])
 	{
@@ -129,6 +129,8 @@ void	checker(int size, char **argv, t_clist **stack_a)
 
 	idx = map_index(arr, size);
 
+	LOG_MESSAGE("arr : ");
+	print_arr(arr, size);
 	LOG_MESSAGE("populate stack\n");
 	i = size - 1;
 	while (i >= 0)
@@ -138,7 +140,8 @@ void	checker(int size, char **argv, t_clist **stack_a)
 	}
 	int size_stack = count_nodes(*stack_a);
 	LOG_MESSAGE("size of stack_a: %d\n", size_stack);
-	print_stack("\n", *stack_a);
+	LOG_MESSAGE("stack_a :\n");
+	print_stack(*stack_a);
 	free(arr);
 	LOG_MESSAGE("checker completed!\n");
 }

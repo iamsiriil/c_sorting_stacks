@@ -85,7 +85,6 @@ int	count_nodes(t_clist *stack)
 	t_clist	*current;
 	int		count;
 
-	LOG_MESSAGE("function call\n");
 	if (stack == NULL)
 		return (0);
 	count = 0;

@@ -12,59 +12,9 @@
 
 #define DEBUG
 #include "./push_swap.h"
+#include "./test_push_swap.h"
 
 int	log_count = 0;
-
-static char	*create_arg_str(int argc, char **argv, size_t size)
-{
-	char	*arg_str;
-	int		i;
-
-	arg_str = malloc(sizeof(char) * (size + argc));
-	if (!arg_str)
-		return (NULL);
-	arg_str[0] = '\0';
-
-	i = 1;
-	while (i < argc)
-	{
-		ft_strlcat(arg_str, argv[i], size + argc);
-		if (i != argc - 1)
-			ft_strlcat(arg_str, " ", size + argc);
-		i++;
-	}
-	return (arg_str);
-}
-
-static char	**arg_parser(int argc, char **argv) 
-{
-	size_t	tsize;
-	char	*arg_str;
-	char	**vec_ptr;
-	int		i;
-
-	i = 1;
-	tsize = 0;
-	while (i < argc)
-	{
-		tsize += ft_strlen(argv[i]) + 1;
-		i++;
-	}
-	arg_str = create_arg_str(argc, argv, tsize);
-	vec_ptr = ft_split(arg_str, ' ');
-	free(arg_str);
-	return (vec_ptr);
-}
-
-int	get_size(char **args)
-{
-	int	i;
-
-	i = 0;
-	while (args[i] != NULL)
-		i++;
-	return (i);
-}
 
 int	main(int argc, char **argv)
 {
@@ -82,9 +32,10 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	LOG_MESSAGE("initialize stacks: stack_a in: %p; stack_b in: %p\n", (void*)&stack_a, (void*)&stack_b);
-	print_argv("arg_vec : ", arg_vec);
+	LOG_MESSAGE("arg_vec: ");
+	print_argv(arg_vec);
 
-	int	size = get_size(arg_vec);
+	int	size = get_argv_size(arg_vec);
 	LOG_MESSAGE("number of elements in arg_vec: %d\n", size);
 
 
@@ -96,7 +47,8 @@ int	main(int argc, char **argv)
 	//else
 		//radix_sort(&stack_a, &stack_b, size);
 
-	print_stack("\n", stack_a);
+	LOG_MESSAGE("stack_a :\n");
+	print_stack(stack_a);
 	LOG_MESSAGE("free stacks and terminate program\n");
 	free_clist(stack_a);
 	free_clist(stack_b);
