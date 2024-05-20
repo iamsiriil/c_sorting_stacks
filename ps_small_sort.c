@@ -14,52 +14,43 @@
 #include "push_swap.h"
 #include "test_push_swap.h"
 
+int get_nbr_position(t_clist *stack, int nbr)
+{
+    t_clist *curr;
+    int     count;
+
+    count = 0;
+    curr = stack;
+    while (1)
+    {
+        if (curr->index != nbr)
+            count++;
+        curr = curr->next;
+        if ((curr->index == nbr) || (curr == stack))
+            break ;
+    }
+    return (count);
+}
+
 void    sort_stack_4(t_clist **stack_a, t_clist ** stack_b)
 {
-    LOG_MESSAGE("function call\n");
-    t_clist *curr;
-    int     max;
-    int     min;
     int     count;
     int     i;
 
-    max = get_stck_max((*stack_a)) + 1;
-    min = get_stck_min((*stack_a));
-    LOG_MESSAGE("max = %d; min = %d\n", max, min);
-    curr = (*stack_a);
-    count = 0;
-    //int iter = 1;
-    if (curr->index != min)
-    {    
-        while (curr->index != min)
-        {
-            count++;
-            curr = curr->next;
-            LOG_MESSAGE("iter = %d; count = %d\n", iter++, count);
-        }
-        LOG_MESSAGE("count = %d\n", count);
-        //iter = 1;
+    i = 0;
+    if ((*stack_a)->index != 0)
+    {
+        count = get_nbr_position((*stack_a), 0);
         if (count <= 2)
         {
-            i = 0;
-            while (i < count)
-            {
-                LOG_MESSAGE("condition 1 (count < 2): iter = %d; count = %d\n", iter++, count);
+            while (i++ < count)
                 ra(stack_a);
-                i++;
-            }
         }
         else
         {
-            count = max - count;
-            LOG_MESSAGE("max - count = %d\n", count);
-            i = 0;
-            while (i < count)
-            {
-                LOG_MESSAGE("condition 2 (else): iter = %d; count = %d\n", iter++, count);
+            count = 4 - count;
+            while (i++ < count)
                 rra(stack_a);
-                i++;
-            }
         }
     }
     pb(stack_a, stack_b);
