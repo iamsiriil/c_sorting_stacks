@@ -10,31 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define DEBUG
+//#define DEBUG
 #include "push_swap.h"
 #include "./test_push_swap.h"
 
-void	check_char(char **argv)
+void	check_char(char **arg_vec)
 {
 	LOG_MESSAGE("function call\n");
 	int	i;
 	int	j;
 	
 
-	if (!argv)
+	if (!arg_vec)
 		error();
 	
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (arg_vec[i])
 	{
 		j = 0;
-		if (argv[i][j] == '+' || argv[i][j] == '-')
+		if (arg_vec[i][j] == '+' || arg_vec[i][j] == '-')
 			j++;
-		if (!ft_isdigit(argv[i][j]))
+		if (!ft_isdigit(arg_vec[i][j]))
 			error();
-		while (argv[i][j])
+		while (arg_vec[i][j])
 		{
-			if (!ft_isdigit(argv[i][j]))
+			if (!ft_isdigit(arg_vec[i][j]))
 				error();
 			j++;
 		}
@@ -50,8 +50,6 @@ void	check_dup(long int *arr, int size)
 
 	if (!arr)
 		error();
-
-
 	i = 0;
 	while (i < size)
 	{
@@ -77,7 +75,6 @@ void	check_int(long int *arr, int size)
 	if (!arr)
 		error();
 	i = 0;
-
 	while (i < size)
 	{
 		if (arr[i] >= INT_MAX || arr[i] <= INT_MIN)
@@ -96,8 +93,6 @@ void	check_sort(long int *arr, int size)
 
 	if (!arr)
 		error();
-
-
 	i = 1;
 	while (i < size)
 	{
@@ -113,7 +108,7 @@ void	check_sort(long int *arr, int size)
 	exit(1);
 }
 
-void	checker(int size, char **argv, t_clist **stack_a)
+void	checker(int size, char **arg_vec, t_clist **stack_a)
 {
 	LOG_MESSAGE("start checker\n");
 	long int	*arr;
@@ -121,8 +116,8 @@ void	checker(int size, char **argv, t_clist **stack_a)
 	int			i;
 
 
-	check_char(argv);
-	arr = convert_argv(size, argv);
+	check_char(arg_vec);
+	arr = convert_argv(size, arg_vec);
 	check_dup(arr, size);
 	check_int(arr, size);
 	check_sort(arr, size);
@@ -130,7 +125,7 @@ void	checker(int size, char **argv, t_clist **stack_a)
 	idx = map_index(arr, size);
 
 	LOG_MESSAGE("arr : ");
-	print_arr(arr, size);
+	//print_arr(arr, size);
 	LOG_MESSAGE("populate stack\n");
 	i = size - 1;
 	while (i >= 0)
@@ -138,10 +133,11 @@ void	checker(int size, char **argv, t_clist **stack_a)
 		push_clist(stack_a, create_clist_node((int)arr[i], idx[i]));
 		i--;
 	}
-	int size_stack = count_nodes(*stack_a);
+	//int size_stack = count_nodes(*stack_a);
 	LOG_MESSAGE("size of stack_a: %d\n", size_stack);
 	LOG_MESSAGE("stack_a :\n");
-	print_stack(*stack_a);
+	//print_stack(*stack_a);
+	free(idx);
 	free(arr);
 	LOG_MESSAGE("checker completed!\n");
 }

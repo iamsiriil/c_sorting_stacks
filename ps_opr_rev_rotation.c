@@ -12,25 +12,27 @@
 
 #include "push_swap.h"
 
+void	reverse_rotation(t_clist **stack)
+{
+	if (stack && (*stack) && (*stack)->prev != (*stack))
+		(*stack) = (*stack)->prev;
+}
+
 void	rra(t_clist **stack_a)
 {
-	if (stack_a && *stack_a && (*stack_a)->next != *stack_a)
-		*stack_a = (*stack_a)->prev;
+	reverse_rotation(stack_a);
 	ft_printf("rra\n");
 }
 
 void	rrb(t_clist **stack_b)
 {
-	if (stack_b && *stack_b && (*stack_b)->next != *stack_b)
-		*stack_b = (*stack_b)->prev;
+	reverse_rotation(stack_b);
 	ft_printf("rrb\n");
 }
 
 void	rrr(t_clist **stack_a, t_clist **stack_b)
 {
-	if (stack_a && *stack_a && (*stack_a)->next != *stack_a)
-		*stack_a = (*stack_a)->prev;
-	if (stack_b && *stack_b && (*stack_b)->next != *stack_b)
-		*stack_b = (*stack_b)->prev;
+	reverse_rotation(stack_a);
+	reverse_rotation(stack_b);
 	ft_printf("rrr\n");
 }

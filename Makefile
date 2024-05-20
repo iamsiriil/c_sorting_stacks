@@ -20,7 +20,8 @@ SOURCE_FILES = ps_utils.c \
 	ps_opr_swap.c \
 	ps_opr_rotation.c \
 	ps_opr_rev_rotation.c \
-	ps_radix.c \
+	ps_small_sort.c \
+	ps_radix_sort.c \
 	test_ps_utils.c
 
 OBJS = $(SOURCE_FILES:.c=.o)

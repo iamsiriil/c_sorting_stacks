@@ -85,7 +85,7 @@ int	get_stck_max(t_clist *stack)
 		if (curr->index > max)
 			max = curr->index;
 		curr = curr->next;
-		if (curr->next == stack)
+		if (curr == stack)
 			break ;
 	}
 	return (max);
@@ -103,7 +103,7 @@ int	get_stck_min(t_clist *stack)
 		if (curr->index < min)
 			min = curr->index;
 		curr = curr->next;
-		if (curr->next == stack)
+		if (curr == stack)
 			break ;
 	}
 	return (min);

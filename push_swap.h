@@ -41,7 +41,7 @@ char		*create_arg_str(int argc, char **argv, size_t size);
 char		**arg_parser(int argc, char **argv);
 
 // Checker
-void		check_char(char **argv);
+void		check_char(char **argumentv);
 void		check_dup(long int *arr, int size);
 void		check_int(long int *arr, int size);
 void		check_sort(long int *arr, int size);
@@ -63,15 +63,23 @@ void		sa(t_clist **stack_a);
 void		sb(t_clist **stack_b);
 void		ss(t_clist **stack_a, t_clist **stack_b);
 
+void		rotation(t_clist **stack);
 void		ra(t_clist **stack_a);
 void		rb(t_clist **stack_b);
 void		rr(t_clist **stack_a, t_clist **stack_b);
 
+void		reverse_rotation(t_clist **stack);
 void		rra(t_clist **stack_a);
 void		rrb(t_clist **stack_b);
 void		rrr(t_clist **stack_a, t_clist **stack_b);
 
-// Radix
-void		radix_sort(t_clist **stack_a, t_clist **stack_b, int argc);
+// Radix Sort
+int			stack_is_sorted(t_clist *stack);
+void		radix_sort(t_clist **stack_a, t_clist **stack_b, int size);
+
+// Small Sort
+void	    sort_stack_4(t_clist **stack_a, t_clist ** stack_b);
+void    	sort_stack_3(t_clist **stack);
+void    	small_sort(t_clist **stack_a, t_clist **stack_b, int size);
 
 #endif

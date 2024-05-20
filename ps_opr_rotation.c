@@ -12,25 +12,27 @@
 
 #include "push_swap.h"
 
+void	rotation(t_clist **stack)
+{
+	if (stack && *stack && (*stack)->next != (*stack))
+		(*stack) = (*stack)->next;
+}
+
 void	ra(t_clist **stack_a)
 {
-	if (stack_a && *stack_a && (*stack_a)->next != *stack_a)
-		*stack_a = (*stack_a)->next;
+	rotation(stack_a);
 	ft_printf("ra\n");
 }
 
 void	rb(t_clist **stack_b)
 {
-	if (stack_b && *stack_b && (*stack_b)->next != *stack_b)
-		*stack_b = (*stack_b)->next;
+	rotation(stack_b);
 	ft_printf("rb\n");
 }
 
 void	rr(t_clist **stack_a, t_clist **stack_b)
 {
-	if (stack_a && *stack_a && (*stack_a)->next != *stack_a)
-		*stack_a = (*stack_a)->next;
-	if (stack_b && *stack_b && (*stack_b)->next != *stack_b)
-		*stack_b = (*stack_b)->next;
+	rotation(stack_a);
+	rotation(stack_b);
 	ft_printf("rr\n");
 }

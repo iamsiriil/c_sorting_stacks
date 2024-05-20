@@ -9,6 +9,8 @@
 #include "../ps_opr_rev_rotation.c"
 #include "../libft/libft.h"
 #include "../push_swap.h"
+#include "../test_ps_utils.c"
+#include "../test_push_swap.h"
 
 void	print_stacks(t_clist *stack_a, t_clist *stack_b)
 {

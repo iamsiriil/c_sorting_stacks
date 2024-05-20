@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define DEBUG
+//#define DEBUG
 #include "./push_swap.h"
 #include "./test_push_swap.h"
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	t_clist		*stack_a;
 	t_clist		*stack_b;
 	char		**arg_vec;
+	int			size;
 
 	LOG_MESSAGE("start\n");
 	if (argc <= 1)
@@ -33,22 +34,22 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	LOG_MESSAGE("initialize stacks: stack_a in: %p; stack_b in: %p\n", (void*)&stack_a, (void*)&stack_b);
 	LOG_MESSAGE("arg_vec: ");
-	print_argv(arg_vec);
+	// print_argv(arg_vec);
 
-	int	size = get_argv_size(arg_vec);
+	size = get_argv_size(arg_vec);
 	LOG_MESSAGE("number of elements in arg_vec: %d\n", size);
 
 
 	checker(size, arg_vec, &stack_a);
 	LOG_MESSAGE("checker completed\n");
 
-	//if (size >= 5)
-		//small_sort
-	//else
-		//radix_sort(&stack_a, &stack_b, size);
+	if (size <= 5)
+		small_sort(&stack_a, &stack_b, size);
+	else
+		radix_sort(&stack_a, &stack_b, size);
 
 	LOG_MESSAGE("stack_a :\n");
-	print_stack(stack_a);
+	//print_stack(stack_a);
 	LOG_MESSAGE("free stacks and terminate program\n");
 	free_clist(stack_a);
 	free_clist(stack_b);
