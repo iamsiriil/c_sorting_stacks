@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	checker(size, arg_vec, &stack_a);
 	LOG_MESSAGE("checker completed\n");
 
-	if (size <= 5)
+	if (size <= 10)
 		select_sort(&stack_a, &stack_b, size, 0);
 	else
 		radix_sort(&stack_a, &stack_b, size);

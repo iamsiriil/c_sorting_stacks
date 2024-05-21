@@ -18,7 +18,6 @@ long int	*convert_argv(int size, char **argv)
 {
 	long int	*arr;
 	int			i;
-	int			j;
 
 	LOG_MESSAGE("start function\n");
 	if (!size || !argv)
@@ -28,12 +27,16 @@ long int	*convert_argv(int size, char **argv)
 	if (!arr)
 		error();
 	i = 0;
-	j = 0;
 	while (argv[i])
 	{
-		arr[j] = ft_atol(argv[i]);
+		arr[i] = ft_atol(argv[i]);
 		i++;
-		j++;
+	}
+	i = 0;
+	while (argv[i] != NULL)
+	{
+		free(argv[i]);
+		i++;
 	}
 	return (arr);
 }

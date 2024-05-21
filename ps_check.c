@@ -16,14 +16,14 @@
 
 void	check_char(char **arg_vec)
 {
-	LOG_MESSAGE("function call\n");
 	int	i;
 	int	j;
 	
-
 	if (!arg_vec)
+	{
+		free(arg_vec);
 		error();
-	
+	}
 	i = 0;
 	while (arg_vec[i])
 	{
@@ -31,11 +31,17 @@ void	check_char(char **arg_vec)
 		if (arg_vec[i][j] == '+' || arg_vec[i][j] == '-')
 			j++;
 		if (!ft_isdigit(arg_vec[i][j]))
+		{
+			free(arg_vec);
 			error();
+		}
 		while (arg_vec[i][j])
 		{
 			if (!ft_isdigit(arg_vec[i][j]))
+			{
+				free(arg_vec);
 				error();
+			}
 			j++;
 		}
 		i++;
@@ -115,29 +121,23 @@ void	checker(int size, char **arg_vec, t_clist **stack_a)
 	int			*idx;
 	int			i;
 
-
 	check_char(arg_vec);
 	arr = convert_argv(size, arg_vec);
+	free(arg_vec);
 	check_dup(arr, size);
 	check_int(arr, size);
 	check_sort(arr, size);
 
 	idx = map_index(arr, size);
 
-	LOG_MESSAGE("arr : ");
-	//print_arr(arr, size);
-	LOG_MESSAGE("populate stack\n");
 	i = size - 1;
 	while (i >= 0)
 	{
 		push_clist(stack_a, create_clist_node((int)arr[i], idx[i]));
 		i--;
 	}
-	//int size_stack = count_nodes(*stack_a);
-	LOG_MESSAGE("size of stack_a: %d\n", size_stack);
 	LOG_MESSAGE("stack_a :\n");
 	//print_stack(*stack_a);
 	free(idx);
 	free(arr);
-	LOG_MESSAGE("checker completed!\n");
 }
