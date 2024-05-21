@@ -78,8 +78,9 @@ int			stack_is_sorted(t_clist *stack);
 void		radix_sort(t_clist **stack_a, t_clist **stack_b, int size);
 
 // Small Sort
-void	    sort_stack_4(t_clist **stack_a, t_clist ** stack_b);
 void    	sort_stack_3(t_clist **stack);
-void    	small_sort(t_clist **stack_a, t_clist **stack_b, int size);
+int 		get_nbr_position(t_clist *stack, int nbr);
+void    	get_to_top(t_clist **stack_a, int size, int nbr);
+void    	select_sort(t_clist **stack_a, t_clist **stack_b, int size, int min);
 
 #endif

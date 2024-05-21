@@ -47,16 +47,15 @@ void	print_stacks(t_clist *stack_a, t_clist *stack_b)
 	printf("\t a\t b\n");
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_clist	*stack_a = NULL;
 	t_clist *stack_b = NULL;
-	int	arr[10] = {1, 9, -54, -97, 124, 5678, 78, -85, -2, 354};
 
-	int i = 9;
-	while (i >= 0)
+	int i = argc - 1;
+	while (i > 0 )
 	{
-		push_clist(&stack_a, create_clist_node(arr[i], 0));
+		push_clist(&stack_a, create_clist_node(ft_atoi(argv[i]), 0));
 		i--;
 	}
 
@@ -64,11 +63,27 @@ int	main(void)
 
 	while (1)
 	{
-		scanf("%s", opr);
 		system("clear");
-
+		print_stacks(stack_a, stack_b);
+		
+		scanf("%s", opr);
+		
 		if (ft_strcmp(opr, "exit") == 0)
 			break;
+
+		if (ft_strcmp(opr, "r") == 0)
+		{
+			free_clist(stack_a);
+			free_clist(stack_b);
+			stack_a = NULL;
+			stack_b = NULL;
+			i = argc - 1;
+			while (i > 0 )
+			{
+				push_clist(&stack_a, create_clist_node(ft_atoi(argv[i]), 0));
+				i--;
+			}
+		}
 
 		if (ft_strcmp(opr, "pa") == 0)
 			pa(&stack_a, &stack_b);
@@ -97,7 +112,6 @@ int	main(void)
 			printf("Invalid command!\n");
 			continue ;
 		}
-		print_stacks(stack_a, stack_b);
 	}
 	return (0);
 }

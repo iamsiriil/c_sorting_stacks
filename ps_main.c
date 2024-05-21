@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	LOG_MESSAGE("checker completed\n");
 
 	if (size <= 5)
-		small_sort(&stack_a, &stack_b, size);
+		select_sort(&stack_a, &stack_b, size, 0);
 	else
 		radix_sort(&stack_a, &stack_b, size);
 

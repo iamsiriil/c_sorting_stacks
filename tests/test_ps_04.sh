@@ -32,5 +32,5 @@ count=0
 for i in "${test_04[@]}"; do
     echo "\nTEST No $count"
     count=$((count + 1))
-    echo "$(../push_swap $i)"
+    echo "$('../push_swap $i')"
 done
