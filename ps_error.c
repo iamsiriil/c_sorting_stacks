@@ -12,8 +12,19 @@
 
 #include "push_swap.h"
 
-void	error(void)
+void	error(void **ptr, int size)
 {
+	int	i;
+
+	if (ptr != NULL && size != 0)
+	{
+		i = 0;
+		while (i < size)
+		{
+			free(ptr[i]);
+			i++;
+		}
+	}
 	ft_putendl_fd("Error", 2);
-	exit(1);
+	exit(EXIT_FAILURE);
 }

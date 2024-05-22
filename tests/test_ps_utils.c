@@ -12,42 +12,58 @@
 
 #include "push_swap.h"
 
-char	*create_arg_str(int argc, char **argv, size_t size)
+void	print_argv(char **argv)
 {
-	char	*arg_str;
-	int		i;
+	int	i;
 
-	arg_str = malloc(sizeof(char) * (size + argc));
-	if (!arg_str)
-		return (NULL);
-	arg_str[0] = '\0';
-	i = 1;
-	while (i < argc)
+    i = 0;
+	while (argv[i] != NULL)
 	{
-		ft_strlcat(arg_str, argv[i], size + argc);
-		if (i != argc - 1)
-			ft_strlcat(arg_str, " ", size + argc);
+		ft_putstr_fd(argv[i], 1);
+		ft_putstr_fd(" ", 1);
 		i++;
 	}
-	return (arg_str);
+	ft_putstr_fd("\n", 1);
 }
 
-char	**arg_parser(int argc, char **argv)
+void	print_arr(long int *arr, int size)
 {
-	size_t	tsize;
-	char	*arg_str;
-	char	**vec_ptr;
-	int		i;
+	int	i;
 
-	i = 1;
-	tsize = 0;
-	while (i < argc)
+	i = 0;
+	while (i < size)
 	{
-		tsize += ft_strlen(argv[i]) + 1;
+		printf("%ld ", arr[i]);
 		i++;
 	}
-	arg_str = create_arg_str(argc, argv, tsize);
-	vec_ptr = ft_split(arg_str, ' ');
-	free(arg_str);
-	return (vec_ptr);
+	printf("\n");
+}
+
+void	print_stack(t_clist *stack)
+{
+	t_clist	*current;
+
+	if (stack == NULL)
+		return ;
+
+	current = stack;
+	ft_printf("\t");
+	while (1)
+	{
+		ft_printf("%d\t", current->index);
+		current = current->next;
+		if (current == stack)
+			break ;
+	}
+	printf("\n");
+	current = stack;
+	ft_printf("\t");
+	while (1)
+	{
+		ft_printf("%d\t", current->data);
+		current = current->next;
+		if (current == stack)
+			break ;
+	}
+	ft_putstr_fd("\n", 1);
 }

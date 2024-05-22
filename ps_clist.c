@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#define DEBUG
 #include "push_swap.h"
 
 t_clist	*create_clist_node(int data, int idx)
@@ -56,7 +55,6 @@ t_clist	*pop_clist(t_clist **stack)
 	}
 	top->prev = top;
 	top->next = top;
-
 	return (top);
 }
 

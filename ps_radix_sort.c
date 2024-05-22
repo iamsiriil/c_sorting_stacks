@@ -45,7 +45,7 @@ void	radix_sort(t_clist **stack_a, t_clist **stack_b, int size)
 	{
 		x = 0;
 		while (x < size && *stack_a)
-		{		
+		{
 			if ((((*stack_a)->index >> i) & 1) == 1)
 				ra(stack_a);
 			else

@@ -10,44 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef TEST_PUSH_SWAP_H
+# define TEST_PUSH_SWAP_H
 
-char	*create_arg_str(int argc, char **argv, size_t size)
-{
-	char	*arg_str;
-	int		i;
+# include <stdio.h>
+# include "./push_swap.h"
 
-	arg_str = malloc(sizeof(char) * (size + argc));
-	if (!arg_str)
-		return (NULL);
-	arg_str[0] = '\0';
-	i = 1;
-	while (i < argc)
-	{
-		ft_strlcat(arg_str, argv[i], size + argc);
-		if (i != argc - 1)
-			ft_strlcat(arg_str, " ", size + argc);
-		i++;
-	}
-	return (arg_str);
-}
+extern int log_count;
 
-char	**arg_parser(int argc, char **argv)
-{
-	size_t	tsize;
-	char	*arg_str;
-	char	**vec_ptr;
-	int		i;
+# ifdef DEBUG
+# define LOG_MESSAGE(format, ...) \
+    do { \
+		printf("%03d: in %s: in %s: ", ++log_count, __FILE__, __func__); \
+        printf(format, ##__VA_ARGS__); \
+		fflush(stdout); \
+    } while (0)
+# else
+# define LOG_MESSAGE(format, ...)
+# endif
 
-	i = 1;
-	tsize = 0;
-	while (i < argc)
-	{
-		tsize += ft_strlen(argv[i]) + 1;
-		i++;
-	}
-	arg_str = create_arg_str(argc, argv, tsize);
-	vec_ptr = ft_split(arg_str, ' ');
-	free(arg_str);
-	return (vec_ptr);
-}
+// Test utils
+void		print_argv(char **argv);
+void		print_arr(long int *arr, int size);
+void		print_stack(t_clist *stack);
+
+#endif

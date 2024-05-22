@@ -10,22 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#define DEBUG
 #include "push_swap.h"
-#include "test_push_swap.h"
 
 long int	*convert_argv(int size, char **argv)
 {
 	long int	*arr;
 	int			i;
 
-	LOG_MESSAGE("start function\n");
 	if (!size || !argv)
-		error();
-	LOG_MESSAGE("populate array\n");
+		error((void **)argv, size);
 	arr = malloc(sizeof(long int) * (size));
 	if (!arr)
-		error();
+		error((void **)&arr, 1);
 	i = 0;
 	while (argv[i])
 	{

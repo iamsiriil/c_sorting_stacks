@@ -10,20 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#define DEBUG
 #include "push_swap.h"
-#include "./test_push_swap.h"
 
-void	check_char(char **arg_vec)
+void	check_char(char **arg_vec, int size)
 {
 	int	i;
 	int	j;
-	
+
 	if (!arg_vec)
-	{
-		free(arg_vec);
-		error();
-	}
+		error((void **)arg_vec, size);
 	i = 0;
 	while (arg_vec[i])
 	{
@@ -31,113 +26,89 @@ void	check_char(char **arg_vec)
 		if (arg_vec[i][j] == '+' || arg_vec[i][j] == '-')
 			j++;
 		if (!ft_isdigit(arg_vec[i][j]))
-		{
-			free(arg_vec);
-			error();
-		}
+			error((void **)arg_vec, size);
 		while (arg_vec[i][j])
 		{
 			if (!ft_isdigit(arg_vec[i][j]))
-			{
-				free(arg_vec);
-				error();
-			}
+				error((void **)arg_vec, size);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	check_dup(long int *arr, int size)
+void	check_dup(long int *arr_vec, int size)
 {
-	LOG_MESSAGE("function call\n");
 	int	i;
 	int	j;
 
-	if (!arr)
-		error();
+	if (!arr_vec)
+		error((void **)&arr_vec, 1);
 	i = 0;
 	while (i < size)
 	{
 		j = i + 1;
 		while (j < size)
 		{
-			if (arr[i] == arr[j])
-			{
-				free(arr);
-				error();
-			}
+			if (arr_vec[i] == arr_vec[j])
+				error((void **)&arr_vec, 1);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	check_int(long int *arr, int size)
+void	check_int(long int *arr_vec, int size)
 {
-	LOG_MESSAGE("function call\n");
 	int	i;
 
-	if (!arr)
-		error();
+	if (!arr_vec)
+		error((void **)&arr_vec, 1);
 	i = 0;
 	while (i < size)
 	{
-		if (arr[i] >= INT_MAX || arr[i] <= INT_MIN)
-		{
-			free(arr);
-			error();
-		}
+		if (arr_vec[i] >= INT_MAX || arr_vec[i] <= INT_MIN)
+			error((void **)&arr_vec, 1);
 		i++;
 	}
 }
 
-void	check_sort(long int *arr, int size)
+void	check_sort(long int *arr_vec, int size)
 {
-	LOG_MESSAGE("function call\n");
 	int	i;
 
-	if (!arr)
-		error();
+	if (!arr_vec)
+		error((void **)&arr_vec, 1);
 	i = 1;
 	while (i < size)
 	{
-		if (arr[i] < arr[i - 1])
-		{
-			LOG_MESSAGE("array NOT sorted. end function\n");
+		if (arr_vec[i] < arr_vec[i - 1])
 			return ;
-		}
 		i++;
 	}
-	LOG_MESSAGE("array is sorted. close program\n");
-	free(arr);
-	exit(1);
+	free(arr_vec);
+	exit(EXIT_FAILURE);
 }
 
-void	checker(int size, char **arg_vec, t_clist **stack_a)
+void	checker(char **arg_vec, int size, t_clist **stack_a)
 {
-	LOG_MESSAGE("start checker\n");
 	long int	*arr;
 	int			*idx;
 	int			i;
 
-	check_char(arg_vec);
+	check_char(arg_vec, size);
 	arr = convert_argv(size, arg_vec);
 	free(arg_vec);
 	check_dup(arr, size);
 	check_int(arr, size);
 	check_sort(arr, size);
-
 	idx = map_index(arr, size);
-
 	i = size - 1;
 	while (i >= 0)
 	{
 		push_clist(stack_a, create_clist_node((int)arr[i], idx[i]));
 		i--;
 	}
-	LOG_MESSAGE("stack_a :\n");
-	//print_stack(*stack_a);
 	free(idx);
 	free(arr);
 }
