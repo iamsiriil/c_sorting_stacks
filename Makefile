@@ -1,7 +1,6 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
-DEBUG = -DDEBUG
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 LIBFT_DIR = ./libft/
@@ -21,15 +20,17 @@ SOURCE_FILES = ps_utils.c \
 	ps_opr_rotation.c \
 	ps_opr_rev_rotation.c \
 	ps_small_sort.c \
-	ps_radix_sort.c \
-	test_ps_utils.c
+	ps_radix_sort.c
 
 OBJS = $(SOURCE_FILES:.c=.o)
 
-$(NAME): $(OBJS)
-	$(CC) $(DEBUG) $(CFLAGS)  -o $@ $(OBJS) -L$(LIBFT_DIR) -lft
-
 all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(LIBFT_DIR) -lft
+
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
 
 clean:
 	$(RM) $(OBJS)

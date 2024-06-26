@@ -14,9 +14,10 @@
 
 void	error(void **ptr, int size)
 {
+	printf("function call @ %s\n", __func__);
 	int	i;
 
-	if (ptr != NULL && size != 0)
+	if (ptr != NULL && size > 1)
 	{
 		i = 0;
 		while (i < size)
@@ -24,7 +25,16 @@ void	error(void **ptr, int size)
 			free(ptr[i]);
 			i++;
 		}
+		free(ptr);
 	}
+	else if (size == 1)
+	{
+		free(*ptr);
+		free(ptr);
+	}
+	else
+		free(*ptr);
+	//free(ptr);
 	ft_putendl_fd("Error", 2);
 	exit(EXIT_FAILURE);
 }

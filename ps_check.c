@@ -11,12 +11,14 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	check_char(char **arg_vec, int size)
 {
+	printf("function call @ %s\n", __func__);
 	int	i;
 	int	j;
-
+	printf("size = %d\n", size);
 	if (!arg_vec)
 		error((void **)arg_vec, size);
 	i = 0;
@@ -63,12 +65,12 @@ void	check_int(long int *arr_vec, int size)
 	int	i;
 
 	if (!arr_vec)
-		error((void **)&arr_vec, 1);
+		error((void **)&arr_vec, 0);
 	i = 0;
 	while (i < size)
 	{
-		if (arr_vec[i] >= INT_MAX || arr_vec[i] <= INT_MIN)
-			error((void **)&arr_vec, 1);
+		if (arr_vec[i] > INT_MAX || arr_vec[i] < INT_MIN)
+			error((void **)&arr_vec, 0);
 		i++;
 	}
 }
@@ -98,7 +100,6 @@ void	checker(char **arg_vec, int size, t_clist **stack_a)
 
 	check_char(arg_vec, size);
 	arr = convert_argv(size, arg_vec);
-	free(arg_vec);
 	check_dup(arr, size);
 	check_int(arr, size);
 	check_sort(arr, size);

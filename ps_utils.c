@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "./tests/test_ps_utils.c"
 
 long int	*convert_argv(int size, char **argv)
 {
@@ -34,6 +35,7 @@ long int	*convert_argv(int size, char **argv)
 		free(argv[i]);
 		i++;
 	}
+	free(argv);
 	return (arr);
 }
 
