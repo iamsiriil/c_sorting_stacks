@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toantune <toantune@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:10:42 by toantune          #+#    #+#             */
-/*   Updated: 2023/04/26 19:59:39 by toantune         ###   ########.fr       */
+/*   Created: 2023/04/18 14:02:21 by toantune          #+#    #+#             */
+/*   Updated: 2023/04/18 14:18:26 by toantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	ft_putnbr_base_pf(unsigned int nb, char *base, int *len)
 {
-	size_t	i;
-
-	if (!dest && !src)
-		return (NULL);
-	i = 0;
-	while (i < n)
+	if (nb == 0)
 	{
-		*(char *)(dest + i) = *(char *)(src + i);
-		i++;
+		ft_putchar_pf('0', len);
+		return ;
 	}
-	return (dest);
+	else if (nb != 0)
+	{
+		if (nb / ft_strlen(base) != 0)
+			ft_putnbr_base_pf(nb / ft_strlen(base), base, len);
+		ft_putchar_pf(base[nb % ft_strlen(base)], len);
+	}
 }

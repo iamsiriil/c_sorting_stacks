@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toantune <toantune@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:10:42 by toantune          #+#    #+#             */
-/*   Updated: 2023/04/26 19:59:39 by toantune         ###   ########.fr       */
+/*   Created: 2023/04/18 12:46:31 by toantune          #+#    #+#             */
+/*   Updated: 2023/04/18 13:15:55 by toantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	ft_putchar_pf(int c, int *len)
 {
-	size_t	i;
-
-	if (!dest && !src)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		*(char *)(dest + i) = *(char *)(src + i);
-		i++;
-	}
-	return (dest);
+	*len += 1;
+	write(1, &c, 1);
 }

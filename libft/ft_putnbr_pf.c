@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toantune <toantune@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:10:42 by toantune          #+#    #+#             */
-/*   Updated: 2023/04/26 19:59:39 by toantune         ###   ########.fr       */
+/*   Created: 2023/04/18 14:02:21 by toantune          #+#    #+#             */
+/*   Updated: 2023/04/18 14:18:26 by toantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	ft_putnbr_pf(int nbr, int *len)
 {
-	size_t	i;
-
-	if (!dest && !src)
-		return (NULL);
-	i = 0;
-	while (i < n)
+	if (nbr == -2147483648)
 	{
-		*(char *)(dest + i) = *(char *)(src + i);
-		i++;
+		ft_putchar_pf('-', len);
+		ft_putchar_pf('2', len);
+		ft_putnbr_pf(147483648, len);
 	}
-	return (dest);
+	else if (nbr < 0)
+	{
+		ft_putchar_pf('-', len);
+		ft_putnbr_pf(-nbr, len);
+	}
+	else if (nbr > 9)
+	{
+		ft_putnbr_pf(nbr / 10, len);
+		ft_putnbr_pf(nbr % 10, len);
+	}
+	else
+		ft_putchar_pf(nbr + '0', len);
 }

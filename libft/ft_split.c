@@ -61,7 +61,7 @@ static void	get_str(char const *s, char c, char **split)
 }
 
 char	**ft_split(char const *s, char c)
-{	
+{
 	char	**split;
 	size_t	len;	
 

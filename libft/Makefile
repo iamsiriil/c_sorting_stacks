@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toantune <toantune@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: parrot <parrot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/26 20:22:33 by toantune          #+#    #+#              #
-#    Updated: 2024/04/23 18:30:33 by toantune         ###   ########.fr        #
+#    Updated: 2024/04/04 05:53:19 by parrot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,13 @@ NAME = libft.a
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fPIC
 
 AR = ar rcs
 
 RM = rm -f
 
 FILES = ft_atoi.c \
-	ft_atol.c \
 	ft_bzero.c \
 	ft_calloc.c \
 	ft_isalnum.c \
@@ -29,6 +28,7 @@ FILES = ft_atoi.c \
 	ft_isascii.c \
 	ft_isdigit.c \
 	ft_isprint.c \
+	ft_isspace.c \
 	ft_itoa.c \
 	ft_memchr.c \
 	ft_memcmp.c \
@@ -42,7 +42,6 @@ FILES = ft_atoi.c \
 	ft_putstr_fd.c \
 	ft_split.c \
 	ft_strchr.c \
-	ft_strcmp.c \
 	ft_strdup.c \
 	ft_striteri.c \
 	ft_strjoin.c \
@@ -57,8 +56,15 @@ FILES = ft_atoi.c \
 	ft_substr.c \
 	ft_tolower.c \
 	ft_toupper.c \
-	get_next_line.c
-
+	get_next_line.c \
+	ft_putchar_pf.c \
+	ft_putnbr_pf.c \
+	ft_putnbrus_pf.c \
+	ft_putnbr_base_pf.c \
+	ft_putnbr_baseus_pf.c \
+	ft_putaddr_pf.c \
+	conversionmng_pf.c \
+	ft_putstr_pf.c
 
 OBJS = $(FILES:.c=.o)
 
@@ -74,22 +80,19 @@ BONUS_FILES = ft_lstadd_back.c \
 
 BONUS_OBJS = $(BONUS_FILES:.c=.o)
 
-#.c.o: $(SRCS)
-#	$(CC) $(CFLAGS) -c -o $@ $<
-
 $(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+	@$(AR) $(NAME) $(OBJS)
 
 bonus: $(OBJS) $(BONUS_OBJS)
-	$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
+	@$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	@$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: clean all
 
