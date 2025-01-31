@@ -1,2 +1,2 @@
-# Push-Swap
+# Sorting Stacks in C
 
